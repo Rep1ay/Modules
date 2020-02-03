@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataService } from './data.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'modules';
+  value;
+  valueFrom;
+  valueTo;
+  elseBlock;
+  centered = true;
+  disabled = false;
+  unbounded = false;
+  showWinnersElse = false;
+  radius: 50;
+  color: string;
+  showLoader = true;
+  winnersList = [];
+  membersList = [];
+
+
+  constructor(private watchersService: DataService) {}
+
+  ngOnInit() {
+    this.getMembers();
+  }
+
+  getMembers(){
+    this.watchersService.getData()
+    .subscribe(res => {
+      this.showLoader = false;
+      res.forEach(watcher => {
+        this.membersList.push(watcher);
+      })
+    })
+  }
+
 }
