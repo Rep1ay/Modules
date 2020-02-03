@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "fake-api": "json-server db.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
