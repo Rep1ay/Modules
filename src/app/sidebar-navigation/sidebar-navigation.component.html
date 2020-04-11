@@ -1,0 +1,117 @@
+<mat-accordion>
+<mat-expansion-panel [expanded]="isExpanded" [disabled]="isDisabled" #reportModelPanel>
+  <mat-expansion-panel-header *ngIf="!isDisabled">
+    <mat-panel-title>
+      <strong>Report</strong> &nbsp; {{ clientName }} / {{ currentMotor }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="sidebar-navigation__container ">
+    <div class="search-bar">
+      <input #searchInput (input)="toggleSearchMode()" placeholder="Type report title..." />
+      <i class="abb-md-icon Search"></i>
+    </div>
+
+    <div
+      [ngClass]="{
+        'sidebar-navigation__report-tree--small': isFormShown,
+        'sidebar-navigation__report-tree--medium': isDeleteModeOn || isDragModeOn
+      }"
+      class="sidebar-navigation__report-tree"
+    >
+      <mat-tree
+        *ngIf="isDataReady"
+        [dataSource]="dataSource"
+        [treeControl]="treeControl"
+        class="sidebar-navigation__elements"
+      >
+        <mat-tree-node matTreeNodeToggle *matTreeNodeDef="let dashboard">
+          <report-element
+            [draggable]="isDragModeOn"
+            (dragstart)="handleDragStart($event, dashboard)"
+            (dragover)="handleDragOver($event, dashboard)"
+            (drop)="handleDrop($event, dashboard)"
+            (dragend)="handleDragEnd()"
+            [style]="getDragStyle(dashboard)"
+            [isDeleteModeOn]="isDeleteModeOn"
+            [isDragModeOn]="isDragModeOn"
+            [isActive]="isActive(dashboard)"
+            [dashboard]="dashboard"
+            [dashboardsMap]="dashboardsMap"
+            [clientDataMap]="clientDataMap"
+            [clientName]="clientName"
+          ></report-element>
+        </mat-tree-node>
+
+        <mat-tree-node *matTreeNodeDef="let dashboard; when: hasNestedChild">
+          <button
+            [ngStyle]="{ 'margin-left.px': dashboard.level * 20 }"
+            class="mat-tree__button"
+            matTreeNodeToggle
+          >
+            <i
+              class="toggle-children"
+              bind-style.transform="
+                treeControl.isExpanded(dashboard) ? 'rotate(90deg)' : 'rotate(0deg)'
+              "
+            ></i>
+          </button>
+          <report-element
+            [draggable]="isDragModeOn"
+            (dragstart)="handleDragStart($event, dashboard)"
+            (dragover)="handleDragOver($event, dashboard)"
+            (drop)="handleDrop($event, dashboard)"
+            (dragend)="handleDragEnd()"
+            [style]="getDragStyle(dashboard)"
+            [isDeleteModeOn]="isDeleteModeOn"
+            [isDragModeOn]="isDragModeOn"
+            [isActive]="isActive(dashboard)"
+            [dashboard]="dashboard"
+            [dashboardsMap]="dashboardsMap"
+            [clientDataMap]="clientDataMap"
+            [clientName]="clientName"
+          ></report-element>
+        </mat-tree-node>
+      </mat-tree>
+    </div>
+
+    <c-md-sidebar-form-element [isFormShown]="isFormShown"></c-md-sidebar-form-element>
+
+    <div
+      class="sidebar-navigation__information-container"
+      [@enterAnimation]
+      *ngIf="isDeleteModeOn || isDragModeOn"
+    >
+      <p class="sidebar-navigation__information-label">
+        {{ informationText | translate }}
+      </p>
+    </div>
+  </div>
+  <div class="sidebar-navigation__buttons">
+    <button
+      [ngClass]="{ 'sidebar-navigation__button--active': isFormShown }"
+      class="sidebar-navigation__button"
+      (click)="toggleModes(0)"
+    >
+      <i class="icon abb-icon-default Plus"></i><span>add</span>
+    </button>
+    <button
+      [ngClass]="{ 'sidebar-navigation__button--active': isDeleteModeOn }"
+      class="sidebar-navigation__button"
+      (click)="toggleModes(1)"
+    >
+      <i class="icon abb-icon-default Minus"></i><span>remove</span>
+    </button>
+    <button
+      [ngClass]="{
+        'sidebar-navigation__button--active': isDragModeOn,
+        'sidebar-navigation__button--disabled': isSearchModeOn
+      }"
+      class="sidebar-navigation__button"
+      (click)="toggleModes(2)"
+    >
+      <i class="icon icon--medium abb-md-icon Rearrange"></i><span>Rearrange</span>
+    </button>
+  </div>
+</mat-expansion-panel>
+</mat-accordion>
