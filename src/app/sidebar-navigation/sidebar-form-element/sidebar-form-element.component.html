@@ -1,0 +1,45 @@
+<div class="{{ theme }} form" [ngClass]="{ 'form--hidden': !isFormShown }">
+  <div class="form__input-container">
+    <span class="form__label">dictionary.Title</span>
+    <input
+      #titleInput
+      class="form__input"
+      type="text"
+      (input)="changeLink($event.target.value)"
+      (keyup.enter)="addDashboard()"
+      (keyup.escape)="closeForm()"
+    />
+    <div *ngIf="!isTitleCorrect" class="form__description">
+      <i class="abb-md-icon Error-in-circle form__icon"></i><span>{{ titleErrorMessage }}</span>
+    </div>
+  </div>
+  <div class="form__input-container">
+    <span class="form__label">dictionary.Link</span>
+    <input
+      #linkInput
+      class="form__input"
+      type="text"
+      (input)="checkValues()"
+      (keyup.enter)="addDashboard()"
+      (keyup.escape)="closeForm()"
+    />
+    <div *ngIf="!isLinkCorrect" class="form__description">
+      <i class="abb-md-icon Error-in-circle form__icon"></i><span>{{ linkErrorMessage  }}</span>
+    </div>
+  </div>
+
+  <div class="checkbox__container" [ngClass]="{ checked: isCheckboxChecked }">
+    <label>
+      <input (click)="isCheckboxChecked = !isCheckboxChecked" type="checkbox" />
+      <span>dictionary.MainDashboard </span>
+    </label>
+  </div>
+  <div class="form__buttons">
+    <button [ngClass]="{ 'form__button--disabled': !isLinkCorrect || !isTitleCorrect }" class="form__button--blue" (click)="addDashboard()">
+      <span>{{ saveButtonKey  }}</span>
+    </button>
+    <button class="form__button" (click)="closeForm()">
+      <span> dictionary.Cancel  </span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+@mixin button($height, $width) {
+  all: unset;
+  width: $width;
+  height: $height;
+  padding-bottom: 2px;
+  margin: 0 8px;
+  font-size: 14px;
+  line-height: $height;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+@mixin button--disabled($height, $width) {
+@include button($height, $width);
+  color: rgba(31, 31, 31, 0.5);
+  background-color: #EBEBEB;
+  border: 1px solid #BABABA;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #EBEBEB;
+    border: 1px solid #BABABA;
+  }
+
+  &:active {
+    background-color: #EBEBEB;
+    border: 1px solid #BABABA;
+  }
+}
+
+@mixin button--disabled-dark($height, $width) {
+@include button($height, $width);
+  color: rgba(219, 219, 219, 0.5);
+  background-color: #3D3D3D;
+  border: 1px solid #686868;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #3D3D3D;
+    border: 1px solid #686868;
+  }
+
+  &:active {
+    background-color: #3D3D3D;
+    border: 1px solid #686868;
+  }
+}
+
+@mixin button--blue($height, $width) {
+@include button($height, $width);
+  color: #FFFFFF;
+  background-color: #3366FF;
+  border: 1px solid #3366FF;
+
+  &:hover {
+    background-color: #2A35FF;
+    border-color: #2A35FF;
+  }
+
+  &:active {
+    background-color: #2C20D4;
+    border-color: #2C20D4;
+  }
+}
+
+@mixin button--blue-dark($height, $width) {
+@include button($height, $width);
+  color: #FFFFFF;
+  background-color: #3366FF;
+  border: 1px solid #3366FF;
+
+  &:hover {
+    background-color: #4C85FF;
+    border-color: #4C85FF;
+  }
+  &:active {
+    background-color: #77A3FC;
+    border-color: #77A3FC;
+  }
+}
+
+@mixin button--gray($height, $width) {
+@include button($height, $width);
+  color: #1F1F1F;
+  background-color: #DBDBDB;
+  border: 1px solid #9F9F9F;
+
+  &:hover {
+    background-color: #BABABA;
+    border-color: #848484;
+  }
+
+  &:active {
+    background-color: #9F9F9F;
+    border-color: #686868;
+  }
+}
+
+@mixin button--gray-dark($height, $width) {
+@include button($height, $width);
+  color: #DBDBDB;
+  background-color: #525252;
+  border: 1px solid #848484;
+
+  &:hover {
+    background-color: #686868;
+    border-color: #9F9F9F;
+  }
+
+  &:active {
+    background-color: #848484;
+    border-color: #BABABA;
+  }
+}
+
+@mixin button--discreet($height, $width) {
+@include button($height, $width);
+  color: #1F1F1F;
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: #0F0F0F;
+  }
+
+  &:active {
+    background-color: #EBEBEB;
+    border-color: #0F0F0F;
+  }
+}
+
+@mixin button--discreet-dark($height, $width) {
+@include button($height, $width);
+  color: #DBDBDB;
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: #FFFFFF;
+  }
+
+  &:active {
+    background-color: #3D3D3D;
+    border-color: #FFFFFF;
+  }
+}

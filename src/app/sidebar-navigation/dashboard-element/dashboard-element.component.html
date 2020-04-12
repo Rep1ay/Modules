@@ -1,0 +1,70 @@
+<div
+  class=" dashboard"
+  [ngClass]="{
+    'drop-above': style === 'drop-above',
+    'drop-below': style === 'drop-below',
+    'drop-center': style === 'drop-center',
+    'dashboard--active': isActive,
+    'dashboard--delete-mode': isDeleteModeOn,
+    'dashboard--drag-mode': isDragModeOn
+  }"
+  #element
+>
+  <div class="dashboard__content">
+    <span
+      *ngIf="!isEditModeOn; else editMode"
+      class="dashboard__title"
+      (click)="changeDashboard()"
+      [ngStyle]="{ 'margin-left.px': margin }"
+      >{{ dashboard.title }}</span
+    >
+
+    <ng-template #editMode>
+      <input
+        #editInput
+        value="{{ dashboard.title }}"
+        class="dashboard__edit-input"
+        type="text"
+        (input)="validateTitle()"
+        (keyup.enter)="validateRenaming()"
+        (keyup.escape)="toggleTooltip()"
+      />
+    </ng-template>
+  </div>
+
+  <div class="dashboard__icons">
+    <i
+      *ngIf="!isDeleteModeOn"
+      (click)="toggleTooltip()"
+      class="icon abb-icon-default Edit "
+      [ngClass]="{ 'icon--visible': isEditModeOn }"
+    ></i>
+    <i *ngIf="isDeleteModeOn" class="icon icon--red abb-icon-default Trash" (click)="toggleTooltip()"></i>
+    <i
+      (click)="toggleMain()"
+      class="icon icon-flag abb-md-other-icons"
+      [ngClass]="{ 'icon--active': dashboard.isMain, 'icon--inactive': !dashboard.isMain, 'icon--visible': isEditModeOn }"
+    ></i>
+  </div>
+
+  <div *ngIf="isTooltipEnabled" class="tooltip" [ngClass]="{ 'tooltip--small': isDeleteModeOn }">
+    <i class="abb-md-icon Close tooltip__icon" (click)="toggleTooltip()"></i>
+    <span class="tooltip__text">
+      {{ tooltipMessage  }}
+    </span>
+    <div *ngIf="!isTitleValid" class="tooltip__error">
+      <i class="abb-md-icon Error-in-circle tooltip__error-mark"></i>
+      <span>
+        {{ errorMessage  }}
+      </span>
+    </div>
+    <div class="buttons">
+      <button class="button" (click)="toggleTooltip()">
+        <span> dictionary.No  </span>
+      </button>
+      <button [ngClass]="{ 'button--disabled': !isTitleValid }" class="button--blue" (click)="handleButtonClick()">
+        <span>dictionary.Yes  </span>
+      </button>
+    </div>
+  </div>
+</div>

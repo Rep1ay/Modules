@@ -1,0 +1,261 @@
+@import '../styles/z-index';
+@import '../styles/colors.scss';
+
+.sidebar-navigation__container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: calc(100vh - 100px);
+  overflow: unset;
+  background-color: $application-background-light;
+}
+
+// .sidebar-navigation__buttons {
+//   display: flex;
+//   height: 50px;
+//   min-height: 50px;
+//   background-color: #262626;
+//   border-top: 1px solid  $application-background-light;
+//   z-index: 2;
+//   bottom: 0;
+//   position: absolute;
+//   width: 100%;
+// }
+
+// .sidebar-navigation__button {
+//   all: unset;
+//   display: flex;
+//   justify-content: center;
+//   flex: 1 1 33%;
+//   align-items: center;
+//   border-right: 1px solid $ui-grey-100;
+//   font-size: 1.2rem;
+
+//   &:hover {
+//     background-color: lighten($ui-grey-100, 5%);
+//     cursor: pointer;
+//   }
+// }
+
+.dark.sidebar-navigation__container {
+  background-color: $application-background-dark;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+
+  input {
+    all: unset;
+    width: 75%;
+    padding: 5px;
+    padding-right: 25px;
+    padding-left: 12px;
+    margin-right: 15px;
+    margin-left: 21px;
+    color: $primary-foreground-light;
+    font-size: 15px;
+    border-bottom: 1px solid $input-border-light;
+  }
+
+  i {
+    position: absolute;
+    right: 20px;
+    color: $secondary-foreground-light;
+  }
+}
+
+.dark .search-bar input {
+  color: $primary-foreground-dark;
+  border-bottom: 1px solid $input-border-dark;
+
+  caret-color: #FFFFFF;
+}
+
+.dark .search-bar i {
+  color: $secondary-foreground-dark;
+}
+
+.sidebar-navigation__report-tree {
+  display: flex;
+  flex: 1;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+
+  -ms-overflow-style: none;
+
+  &--small {
+    max-height: calc(100vh - 450px);
+  }
+
+  &--medium {
+    max-height: calc(100vh - 310px);
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mat-tree {
+  background-color: $application-background-light;
+}
+
+.dark .mat-tree {
+  background-color: $application-background-dark;
+}
+
+.mat-tree__button {
+  all: unset;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding-left: 12px;
+  color: $secondary-foreground-light;
+  cursor: pointer;
+}
+
+.dark .mat-tree__button {
+  color: $secondary-foreground-dark;
+}
+
+.mat-tree__list {
+  all: unset;
+  width: 100%;
+}
+
+.mat-tree-node {
+  min-height: unset;
+}
+
+.mat-tree__node--invisible {
+  display: none;
+}
+
+.sidebar-navigation__elements {
+  width: 100%;
+  height: 100%;
+}
+
+// .sidebar-navigation__buttons {
+//   @include z-index(navigation-button);
+//   display: flex;
+//   height: 64px;
+//   background-color: $application-background-light;
+// }
+
+// .dark .sidebar-navigation__buttons {
+//   background-color: $application-background-dark;
+// }
+
+// .sidebar-navigation__button {
+//   all: unset;
+//   display: flex;
+//   align-items: center;
+//   flex: 1 1 33%;
+//   justify-content: center;
+//   height: 60px;
+//   border-bottom: 4px solid transparent;
+//   cursor: pointer;
+
+//   span {
+//     position: absolute;
+//     bottom: 12px;
+//     color: $primary-foreground-light;
+//     font-size: 12px;
+//   }
+
+//   &:hover {
+//     background-color: #DBDBDB;
+//   }
+
+//   &--active {
+//     border-bottom: 4px solid $ui-blue-primary;
+//   }
+
+//   &--disabled {
+//     cursor: not-allowed;
+//     opacity: 0.4;
+//   }
+
+//   &--disabled:hover {
+//     background-color: $application-background-light;
+//   }
+// }
+
+.sidebar-navigation__buttons {
+  display: flex;
+  height: 50px;
+  min-height: 50px;
+  background-color: #262626;
+  border-top: 1px solid  $application-background-light;
+  z-index: 2;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.sidebar-navigation__button {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  flex: 1 1 33%;
+  align-items: center;
+  border-right: 1px solid  $application-background-light;
+  font-size: 1.2rem;
+
+  &:hover {
+    background-color: lighten( $application-background-light, 5%);
+    cursor: pointer;
+  }
+}
+
+// .dark .sidebar-navigation__button {
+//   span {
+//     color: $primary-foreground-dark;
+//   }
+//   &:hover {
+//     background-color: #525252;
+//   }
+//   &--disabled:hover {
+//     background-color: $application-background-dark;
+//   }
+// }
+
+.icon {
+  position: absolute;
+  bottom: 22px;
+  color: $primary-foreground-light;
+  font-size: 2rem;
+
+  &--medium {
+    bottom: 30px;
+    font-size: 1.4rem;
+  }
+}
+
+.dark .icon {
+  color: $primary-foreground-dark;
+}
+
+.sidebar-navigation__information-container {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.sidebar-navigation__information-label {
+  margin: 30px 10px;
+  color: $secondary-foreground-light;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.dark .sidebar-navigation__information-label {
+  color: $secondary-foreground-dark;
+}

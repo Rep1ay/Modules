@@ -1,10 +1,10 @@
-<mat-accordion>
-<mat-expansion-panel [expanded]="isExpanded" [disabled]="isDisabled" #reportModelPanel>
-  <mat-expansion-panel-header *ngIf="!isDisabled">
+<!-- <mat-accordion> -->
+<!-- <mat-expansion-panel #reportModelPanel> -->
+  <!-- <mat-expansion-panel-header>
     <mat-panel-title>
-      <strong>Report</strong> &nbsp; {{ clientName }} / {{ currentMotor }}
+      <strong>Report</strong> &nbsp; clientName / currentMotor
     </mat-panel-title>
-  </mat-expansion-panel-header>
+  </mat-expansion-panel-header> -->
 
   <div class="sidebar-navigation__container ">
     <div class="search-bar">
@@ -26,7 +26,7 @@
         class="sidebar-navigation__elements"
       >
         <mat-tree-node matTreeNodeToggle *matTreeNodeDef="let dashboard">
-          <report-element
+          <dashboard-element
             [draggable]="isDragModeOn"
             (dragstart)="handleDragStart($event, dashboard)"
             (dragover)="handleDragOver($event, dashboard)"
@@ -37,10 +37,7 @@
             [isDragModeOn]="isDragModeOn"
             [isActive]="isActive(dashboard)"
             [dashboard]="dashboard"
-            [dashboardsMap]="dashboardsMap"
-            [clientDataMap]="clientDataMap"
-            [clientName]="clientName"
-          ></report-element>
+            ></dashboard-element>
         </mat-tree-node>
 
         <mat-tree-node *matTreeNodeDef="let dashboard; when: hasNestedChild">
@@ -56,7 +53,7 @@
               "
             ></i>
           </button>
-          <report-element
+          <dashboard-element
             [draggable]="isDragModeOn"
             (dragstart)="handleDragStart($event, dashboard)"
             (dragover)="handleDragOver($event, dashboard)"
@@ -67,12 +64,11 @@
             [isDragModeOn]="isDragModeOn"
             [isActive]="isActive(dashboard)"
             [dashboard]="dashboard"
-            [dashboardsMap]="dashboardsMap"
-            [clientDataMap]="clientDataMap"
-            [clientName]="clientName"
-          ></report-element>
+          ></dashboard-element>
         </mat-tree-node>
+
       </mat-tree>
+
     </div>
 
     <c-md-sidebar-form-element [isFormShown]="isFormShown"></c-md-sidebar-form-element>
@@ -83,35 +79,36 @@
       *ngIf="isDeleteModeOn || isDragModeOn"
     >
       <p class="sidebar-navigation__information-label">
-        {{ informationText | translate }}
+        {{ informationText }}
       </p>
     </div>
+    <div class="sidebar-navigation__buttons">
+      <button
+        [ngClass]="{ 'sidebar-navigation__button--active': isFormShown }"
+        class="sidebar-navigation__button"
+        (click)="toggleModes(0)"
+      >
+        <i class="icon abb-icon-default Plus"></i><span>add</span>
+      </button>
+      <button
+        [ngClass]="{ 'sidebar-navigation__button--active': isDeleteModeOn }"
+        class="sidebar-navigation__button"
+        (click)="toggleModes(1)"
+      >
+        <i class="icon abb-icon-default Minus"></i><span>remove</span>
+      </button>
+      <button
+        [ngClass]="{
+          'sidebar-navigation__button--active': isDragModeOn,
+          'sidebar-navigation__button--disabled': isSearchModeOn
+        }"
+        class="sidebar-navigation__button"
+        (click)="toggleModes(2)"
+      >
+        <i class="icon icon--medium abb-md-icon Rearrange"></i><span>Rearrange</span>
+      </button>
+    </div>
   </div>
-  <div class="sidebar-navigation__buttons">
-    <button
-      [ngClass]="{ 'sidebar-navigation__button--active': isFormShown }"
-      class="sidebar-navigation__button"
-      (click)="toggleModes(0)"
-    >
-      <i class="icon abb-icon-default Plus"></i><span>add</span>
-    </button>
-    <button
-      [ngClass]="{ 'sidebar-navigation__button--active': isDeleteModeOn }"
-      class="sidebar-navigation__button"
-      (click)="toggleModes(1)"
-    >
-      <i class="icon abb-icon-default Minus"></i><span>remove</span>
-    </button>
-    <button
-      [ngClass]="{
-        'sidebar-navigation__button--active': isDragModeOn,
-        'sidebar-navigation__button--disabled': isSearchModeOn
-      }"
-      class="sidebar-navigation__button"
-      (click)="toggleModes(2)"
-    >
-      <i class="icon icon--medium abb-md-icon Rearrange"></i><span>Rearrange</span>
-    </button>
-  </div>
-</mat-expansion-panel>
-</mat-accordion>
+
+<!-- </mat-expansion-panel> -->
+<!-- </mat-accordion> -->

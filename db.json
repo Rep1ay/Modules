@@ -72,5 +72,52 @@
       "totalTime": 4,
       "userName": "Eight"
     }
+  ],
+  "dashboards": [
+    {
+      "link": "main-dash",
+      "title": "Main",
+      "isMain": true,
+      "type": "Parent"
+    },
+    {
+      "link": "low-load-analysis",
+      "title": "Low Load Analysis",
+      "isMain": false,
+      "type": "Parent"
+    },
+    {
+      "link": "RunTime",
+      "title": "Runtime Analysis",
+      "isMain": false,
+      "type": "Parent"
+    },
+    {
+      "link": "trip-analysis",
+      "title": "Trip Analysis",
+      "isMain": false,
+      "type": "Child",
+      "parent": "RunTime"
+    },
+    {
+      "link": "basic-analysis",
+      "title": "basic analysis",
+      "isMain": false,
+      "type": "Parent"
+    },
+    {
+      "link": "test",
+      "title": "test",
+      "isMain": false,
+      "type": "Child",
+      "parent": "basic-analysis"
+    },
+    {
+      "link": "event-analysis-l1",
+      "title": "Event Analysis L1",
+      "isMain": false,
+      "type": "Grandchild",
+      "parent": "test"
+    }
   ]
 }

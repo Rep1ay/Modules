@@ -1,0 +1,16 @@
+/* Increment values by 10 to leave room for error and tweaks. */
+$z-index: (
+  angular-unset: unset !important,
+  dialog: 30,
+  tooltip: 20,
+  navigation-button: 11,
+  navigation-form: 10
+);
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}

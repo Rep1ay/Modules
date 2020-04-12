@@ -1,0 +1,129 @@
+@import './../../styles/z-index.scss';
+@import './../../styles/buttons.scss';
+@import './../../styles/checkboxes.scss';
+@import './../../styles/colors.scss';
+$button-height: 32px;
+$button-width: 100px;
+
+.form {
+  @include z-index(navigation-form);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  transform: translateY(0%);
+  transition: all 350ms ease-in;
+
+  &--hidden {
+    position: absolute;
+    bottom: 64px;
+    width: 100%;
+    transform: translateY(100%);
+    transition: all 350ms ease-in;
+    visibility: hidden;
+  }
+}
+
+.form__input-container {
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+}
+
+.form__label {
+  padding: 0 10px 5px 20px;
+  color: $primary-foreground-light;
+  font-size: 1.05rem;
+}
+
+.form__input {
+  all: unset;
+  height: 24px;
+  padding: 3px 5px;
+  margin: 0 20px;
+  color: $primary-foreground-light;
+  font-size: 14px;
+  background-color: $content-area-light;
+  border: 1px solid $input-border-light;
+
+  &::placeholder {
+    color: $secondary-foreground-light;
+    opacity: 0.75;
+  }
+
+  &--red {
+    border-bottom: 2px solid $red;
+  }
+}
+
+.form__description {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-left: 20px;
+  color: $secondary-foreground-light;
+  font-size: 0.8rem;
+}
+
+.form__icon {
+  margin-right: 6px;
+  color: $red;
+  font-size: 1.1rem;
+}
+
+.form__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+
+.form__button {
+  @include button--gray($button-height, $button-width);
+}
+
+.dark .form__button {
+  @include button--gray-dark($button-height, $button-width);
+}
+
+.form__button--blue {
+  @include button--blue($button-height, $button-width);
+}
+
+.dark .form__button--blue {
+  @include button--blue-dark($button-height, $button-width);
+}
+
+.form__button--disabled {
+  @include button--disabled($button-height, $button-width);
+}
+
+.dark .form__button--disabled {
+  @include button--disabled-dark($button-height, $button-width);
+}
+
+.checkbox__container {
+  @include checkbox();
+}
+
+.dark .checkbox__container {
+  @include checkbox--dark();
+}
+
+.dark .form__label {
+  color: $primary-foreground-dark;
+}
+
+.dark .form__input {
+  color: $primary-foreground-dark;
+  background-color: $content-area-dark;
+  border: 1px solid $input-border-dark;
+
+  &::placeholder {
+    color: $secondary-foreground-dark;
+  }
+}
+
+.dark .form__description {
+  color: $secondary-foreground-dark;
+}

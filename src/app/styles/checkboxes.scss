@@ -1,0 +1,99 @@
+@import "colors.scss";
+
+@mixin checkbox() {
+  display: block;
+  font-size: 14px;
+  height: 32px;
+  margin-left: 22px;
+
+  &.checked label::before {
+    background-color: #3366ff;
+    border-color: #3366ff;
+  }
+
+  &.checked label:hover::before {
+    background-color: #2a35ff;
+    border-color: #2a35ff;
+  }
+
+  // White tick icon.
+  &.checked label::after {
+    content: "\e923";
+    color: #ffffff;
+    display: inline-block;
+    font-family: "abb-default-icons" !important;
+    font-size: 14ox;
+    height: 16px;
+    left: 1px;
+    line-height: 16px;
+    position: absolute;
+    top: 9px;
+    width: 16px;
+  }
+
+  label {
+    cursor: pointer;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  label::after {
+    display: none;
+  }
+
+  label:hover::before {
+    background-color: #ebebeb;
+    border-color: #9f9f9f;
+  }
+
+  // Gray rectangle.
+  label::before {
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-color: #bababa;
+    border-radius: 2px;
+    box-sizing: border-box;
+    content: "";
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 9px;
+    transition: border 200ms cubic-bezier(0.18, 0.24, 0.29, 0.96), color 0.15s 200ms cubic-bezier(0.18, 0.24, 0.29, 0.96);
+    width: 16px;
+  }
+
+  span {
+    color: $primary-foreground-light;
+    font-size: 1rem;
+    left: 25px;
+    position: absolute;
+    top: 7px;
+    width: 150px;
+  }
+
+  input {
+    left: 12px;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    width: 0px;
+  }
+}
+
+@mixin checkbox--dark() {
+  @include checkbox();
+
+  span {
+    color: $primary-foreground-dark;
+  }
+
+  label::before {
+    border-color: #525252;
+    background-color: #1f1f1f;
+  }
+
+  label:hover::before {
+    border: 2px solid #686868;
+    background-color: #3d3d3d;
+  }
+}

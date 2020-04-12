@@ -1,0 +1,289 @@
+@import './../../styles/colors.scss';
+@import './../../styles/buttons.scss';
+$button-height: 24px;
+$button-width: 70px;
+
+:host {
+  width: 100%;
+}
+
+.dashboard {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 10px;
+  color: $primary-foreground-light;
+  font-size: 14px;
+  background: $application-background-light;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-left: 4px solid transparent;
+
+  &--drag-mode:hover,
+  &--drag-mode .dashboard__content,
+  &--drag-mode .dashboard__title {
+    cursor: grab;
+  }
+}
+
+.dark.dashboard {
+  color: $primary-foreground-dark;
+  background: $application-background-dark;
+}
+
+.dashboard:hover {
+  background-color: $focus-background-light;
+
+  .icon,
+  .icon.icon--inactive {
+    display: flex;
+    color: $secondary-foreground-light;
+  }
+
+  .icon:hover {
+    color: $primary-foreground-light;
+  }
+}
+
+.dark.dashboard:hover {
+  background-color: $focus-background-dark;
+
+  .icon,
+  .icon.icon--inactive {
+    color: $secondary-foreground-dark;
+  }
+
+  .icon:hover {
+    color: $primary-foreground-dark;
+  }
+}
+
+.dashboard--delete-mode:hover .icon--red,
+.dashboard--delete-mode:hover .icon--red:hover {
+  color: $red;
+}
+
+.dashboard--active {
+  background-color: $focus-background-light;
+  border-left: 4px solid $ui-blue-primary;
+}
+
+.dark.dashboard--active {
+  background-color: $focus-background-dark;
+}
+
+.dashboard__icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.icon {
+  display: none;
+  padding-left: 8px;
+  color: $secondary-foreground-light;
+  font-size: 18px;
+  cursor: pointer;
+
+  &--active {
+    display: flex;
+  }
+
+  &--visible {
+    display: flex;
+  }
+}
+
+.dark .icon {
+  color: $secondary-foreground-dark;
+}
+
+.dashboard__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 30px;
+}
+
+.drop-above {
+  border-top: 2px solid #1F1F1F;
+}
+
+.drop-below {
+  border-bottom: 2px solid #1F1F1F;
+}
+
+.drop-center {
+  background-color: $focus-background-light;
+}
+
+.dark.drop-center {
+  background-color: $focus-background-dark;
+}
+
+.dark.drop-above {
+  border-top-color: #DBDBDB;
+}
+
+.dark.drop-below {
+  border-bottom-color: #DBDBDB;
+}
+
+.dashboard__title {
+  display: flex;
+  flex: 1;
+  cursor: pointer;
+}
+
+.dashboard__edit-input {
+  all: unset;
+  display: flex;
+  flex: 1;
+  padding: 3px;
+  text-align: center;
+  border-bottom: 1px solid #1F1F1F;
+  cursor: text;
+
+  &::placeholder {
+    font-size: 16px;
+  }
+
+  &--warning {
+    border-bottom: 1px solid $red;
+  }
+}
+
+.dark .dashboard__edit-input {
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.tooltip {
+  position: absolute;
+  left: 310px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 265px;
+  height: 140px;
+  padding: 8px;
+  background: $content-area-light;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  border: $application-background-light;
+  cursor: default;
+}
+
+.dark .tooltip {
+  background: $content-area-dark;
+  border: $application-background-dark;
+}
+
+.tooltip::before,
+.tooltip::after {
+  position: absolute;
+  top: 59px;
+  content: ' ';
+  border: 10px solid transparent;
+}
+
+.tooltip::before {
+  right: 265px;
+  border-right-color: $input-border-light;
+}
+
+.dark .tooltip::before {
+  border-right-color: $input-border-dark;
+}
+
+.tooltip::after {
+  right: 263px;
+  border-right-color: $content-area-light;
+}
+
+.dark .tooltip::after {
+  border-right-color: $content-area-dark;
+}
+
+.tooltip--small {
+  height: 120px;
+
+  &::before,
+  &::after {
+    top: 50px;
+  }
+}
+
+.tooltip__error {
+  position: absolute;
+  bottom: 45;
+  left: 22px;
+  display: flex;
+  align-items: center;
+  color: $secondary-foreground-light;
+  font-size: 0.9rem;
+}
+
+.dark .tooltip__error {
+  color: $secondary-foreground-dark;
+}
+
+.tooltip__text {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  width: 190px;
+  color: $primary-foreground-light;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+}
+
+.dark .tooltip__text {
+  color: $primary-foreground-dark;
+}
+
+.tooltip__icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.tooltip__error-mark {
+  margin-right: 6px;
+  color: $red;
+}
+
+.buttons {
+  display: flex;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.button {
+  @include button--discreet($button-height, $button-width);
+}
+
+.dark .button {
+  @include button--discreet-dark($button-height, $button-width);
+}
+
+.button--blue {
+  @include button--blue($button-height, $button-width);
+}
+
+.dark .button--blue {
+  @include button--blue-dark($button-height, $button-width);
+}
+
+.button--disabled {
+  @include button--disabled($button-height, $button-width);
+}
+
+.button--disabled-dark {
+  @include button--disabled-dark($button-height, $button-width);
+}
